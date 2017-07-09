@@ -1,5 +1,7 @@
 package ru.kpfu.itis.teachersrating.model;
 
+import org.hibernate.annotations.SortNatural;
+
 import javax.persistence.*;
 import java.util.SortedSet;
 
@@ -17,6 +19,8 @@ public class Survey {
     @Column
     private String description;
 
+    @SortNatural
+    @OrderBy
     @OneToMany(mappedBy = "survey", cascade = CascadeType.ALL, orphanRemoval = true)
     private SortedSet<Question> questions;
 
