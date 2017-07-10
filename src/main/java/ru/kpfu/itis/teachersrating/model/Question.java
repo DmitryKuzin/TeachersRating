@@ -17,7 +17,7 @@ public class Question implements Comparable<Question> {
     @Column
     private String text;
 
-    @Column
+    @Column(name = "order_num")
     private Integer order;
 
     @ManyToOne
