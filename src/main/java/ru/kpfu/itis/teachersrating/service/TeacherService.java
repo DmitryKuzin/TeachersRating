@@ -21,4 +21,6 @@ public interface TeacherService {
 
     //удаляем
     void removeTeacher(Long teacherId);
+
+    void saveChanges(Long teacherId, AddTeacherForm form);
 }

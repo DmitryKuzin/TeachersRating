@@ -5,8 +5,6 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration;
 
-import static org.springframework.boot.SpringApplication.run;
-
 @SpringBootApplication
 @EnableAutoConfiguration(exclude = {FreeMarkerAutoConfiguration.class})
 public class Application {

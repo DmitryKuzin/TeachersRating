@@ -31,12 +31,25 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/admin/add/teacher", method = RequestMethod.POST)
-    public String saveNewTeacher(@ModelAttribute("userform") @Valid AddTeacherForm form, Model model){
+    public String saveNewTeacher(@ModelAttribute("add_form") @Valid AddTeacherForm form){
         teacherService.saveNewTeacher(form);
         return "redirect:/teacher";
     }
 
-    @RequestMapping(value = "/admin/remove/teacher/{teacherId}", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/edit/teacher/{teacherId}", method = RequestMethod.GET)
+    public String editTeacher(@PathVariable Long teacherId, Model model){
+        model.addAttribute("add_form", new AddTeacherForm());
+        model.addAttribute("teacher", teacherService.getTeacherById(teacherId));
+        return "edit_teacher";
+    }
+
+    @RequestMapping(value = "/admin/edit/teacher/{teacherId}", method = RequestMethod.POST)
+    public String saveChanges(@PathVariable Long teacherId, @ModelAttribute("add_form") @Valid AddTeacherForm form){
+        teacherService.saveChanges(teacherId, form);
+        return "redirect:/teacher";
+    }
+
+    @RequestMapping(value = "/admin/remove/teacher/{teacherId}", method = RequestMethod.GET)
     public String removeTeacher(@PathVariable Long teacherId){
         teacherService.removeTeacher(teacherId);
         return "redirect:/teacher";

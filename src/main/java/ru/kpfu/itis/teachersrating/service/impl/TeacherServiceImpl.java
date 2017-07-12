@@ -49,4 +49,13 @@ public class TeacherServiceImpl implements TeacherService {
     public void removeTeacher(Long teacherId) {
         teacherRepository.delete(teacherId);
     }
+
+    @Override
+    @Transactional
+    public void saveChanges(Long teacherId, AddTeacherForm form) {
+        Teacher teacher = teacherRepository.findOne(teacherId);
+        teacher.setFirstname(form.getFirstname());
+        teacher.setLastname(form.getLastname());
+        teacherRepository.save(teacher);
+    }
 }

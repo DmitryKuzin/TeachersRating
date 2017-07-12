@@ -23,6 +23,15 @@
     <#list spring.status.errorMessages as error> <b>${error}</b> <br> </#list>
         <br>
     </label>
+
+    <#--<label>Добавьте фото:<br>-->
+        <#--<form method="POST" action="/uploadFile" enctype="multipart/form-data">-->
+            <#--<input type="file" name="file">-->
+            <#--<input type="submit" value="Upload"> Нажми на меня!-->
+        <#--</form>-->
+        <#--<br>-->
+    <#--</label>-->
+    <#--</form>-->
     <input type="submit" value="Сохранить">
 </form>
 
