@@ -1,6 +1,6 @@
 package ru.kpfu.itis.teachersrating.service;
 
-import ru.kpfu.itis.teachersrating.form.AddTeacherForm;
+import ru.kpfu.itis.teachersrating.form.TeacherForm;
 import ru.kpfu.itis.teachersrating.model.Teacher;
 
 import java.util.List;
@@ -17,10 +17,10 @@ public interface TeacherService {
     Teacher getTeacherById(Long teacherId);
 
     //сохраняем
-    void saveNewTeacher(AddTeacherForm form);
+    void saveTeacherByForm(TeacherForm form);
 
     //удаляем
     void removeTeacher(Long teacherId);
 
-    void saveChanges(Long teacherId, AddTeacherForm form);
+    void saveChanges(Long teacherId, TeacherForm form);
 }

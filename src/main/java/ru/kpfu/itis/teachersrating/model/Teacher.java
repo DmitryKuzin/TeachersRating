@@ -21,6 +21,9 @@ public class Teacher {
     @Column
     private String description;
 
+    @Column(name = "image_path")
+    private String imagePath;
+
     @ManyToMany(mappedBy = "teachers")
     private Set<Institute> institutes;
 
@@ -60,6 +63,14 @@ public class Teacher {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public Set<Institute> getInstitutes() {

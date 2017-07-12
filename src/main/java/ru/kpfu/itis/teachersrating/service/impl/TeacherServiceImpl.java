@@ -2,11 +2,11 @@ package ru.kpfu.itis.teachersrating.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.kpfu.itis.teachersrating.form.AddTeacherForm;
+import ru.kpfu.itis.teachersrating.form.TeacherForm;
 import ru.kpfu.itis.teachersrating.model.Teacher;
 import ru.kpfu.itis.teachersrating.repository.TeacherRepository;
+import ru.kpfu.itis.teachersrating.service.FileService;
 import ru.kpfu.itis.teachersrating.service.TeacherService;
-import ru.kpfu.itis.teachersrating.util.TeacherAddFormTransformer;
 
 import javax.transaction.Transactional;
 import java.util.Comparator;
@@ -20,6 +20,8 @@ import java.util.stream.Collectors;
 public class TeacherServiceImpl implements TeacherService {
     @Autowired
     TeacherRepository teacherRepository;
+    @Autowired
+    FileService fileService;
 
     //достает всех учителей
     @Override
@@ -40,8 +42,15 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     @Transactional
-    public void saveNewTeacher(AddTeacherForm form) {
-        Teacher teacher = TeacherAddFormTransformer.transform(form);
+    public void saveTeacherByForm(TeacherForm form) {
+        Teacher teacher = new Teacher();
+        teacher.setFirstname(form.getFirstname());
+        teacher.setLastname(form.getLastname());
+        if (form.getFile().isEmpty()) {
+            teacher.setImagePath("/img/defaultImage.jpg");
+        } else {
+            teacher.setImagePath("/img/" + fileService.saveImage(form.getFile()));
+        }
         teacherRepository.save(teacher);
     }
 
@@ -52,7 +61,7 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     @Transactional
-    public void saveChanges(Long teacherId, AddTeacherForm form) {
+    public void saveChanges(Long teacherId, TeacherForm form) {
         Teacher teacher = teacherRepository.findOne(teacherId);
         teacher.setFirstname(form.getFirstname());
         teacher.setLastname(form.getLastname());

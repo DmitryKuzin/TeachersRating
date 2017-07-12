@@ -1,13 +1,11 @@
 package ru.kpfu.itis.teachersrating.form;
 
 import org.hibernate.validator.constraints.NotEmpty;
-import ru.kpfu.itis.teachersrating.model.Role;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.validation.constraints.Size;
 
-public class AddTeacherForm {
+public class TeacherForm {
     @NotEmpty(message = "Поле не может быть пустым")
     @Size(min = 2, max = 30, message = "Максимальная длина 30 символов")
     private String firstname;
@@ -15,6 +13,8 @@ public class AddTeacherForm {
     @NotEmpty(message = "Поле не может быть пустым")
     @Size(min = 2, max = 30, message = "Максимальная длина 30 символов")
     private String lastname;
+
+    private MultipartFile file;
 
     public String getFirstname() {
         return firstname;
@@ -30,5 +30,13 @@ public class AddTeacherForm {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = file;
     }
 }

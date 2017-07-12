@@ -9,6 +9,9 @@
 <#if teachers?has_content>
 <#list teachers as teacher>
     <div>
+        <#if teacher.imagePath??>
+            <img src="${teacher.imagePath}" style="height: 200px"/>
+        </#if>
         <h3>Фамилия: ${teacher.lastname}</h3>
         <h3>Имя: ${teacher.firstname}</h3>
         <a href="/admin/edit/teacher/${teacher.id}">Редактировать</a>
@@ -18,6 +21,9 @@
 <#else>
     <#if teacher??>
     <div>
+        <#if teacher.imagePath??>
+            <img src="${teacher.imagePath}" style="height: 200px"/>
+        </#if>
         <h3>Фамилия: ${teacher.lastname}</h3>
         <h3>Имя: ${teacher.firstname}</h3>
         <a href="/admin/edit/teacher/${teacher.id}">Редактировать</a>
