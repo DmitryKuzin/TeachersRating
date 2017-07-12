@@ -25,7 +25,10 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public List<Teacher> getAllTeachers() {
         List<Teacher> teachers = teacherRepository.findAll();
-        teachers = teachers.stream().sorted(Comparator.comparing(Teacher::getName)).collect(Collectors.toList());
+        teachers = teachers.stream()
+                .sorted(Comparator.comparing(Teacher::getLastname)
+                                .thenComparing(Comparator.comparing(Teacher::getFirstname)))
+                .collect(Collectors.toList());
         return teachers;
     }
 
@@ -40,5 +43,10 @@ public class TeacherServiceImpl implements TeacherService {
     public void saveNewTeacher(AddTeacherForm form) {
         Teacher teacher = TeacherAddFormTransformer.transform(form);
         teacherRepository.save(teacher);
+    }
+
+    @Override
+    public void removeTeacher(Long teacherId) {
+        teacherRepository.delete(teacherId);
     }
 }

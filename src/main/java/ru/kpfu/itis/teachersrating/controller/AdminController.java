@@ -3,8 +3,8 @@ package ru.kpfu.itis.teachersrating.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.kpfu.itis.teachersrating.form.AddTeacherForm;
@@ -18,8 +18,6 @@ import javax.validation.Valid;
 public class AdminController {
     @Autowired
     TeacherService teacherService;
-    @Autowired
-    TeacherController teacherController;
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String getAdminPage(){
@@ -35,6 +33,12 @@ public class AdminController {
     @RequestMapping(value = "/admin/add/teacher", method = RequestMethod.POST)
     public String saveNewTeacher(@ModelAttribute("userform") @Valid AddTeacherForm form, Model model){
         teacherService.saveNewTeacher(form);
+        return "redirect:/teacher";
+    }
+
+    @RequestMapping(value = "/admin/remove/teacher/{teacherId}", method = RequestMethod.POST)
+    public String removeTeacher(@PathVariable Long teacherId){
+        teacherService.removeTeacher(teacherId);
         return "redirect:/teacher";
     }
 }

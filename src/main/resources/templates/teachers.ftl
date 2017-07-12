@@ -8,16 +8,23 @@
     <title>Список сотрудников</title>
 </head>
 <body>
+<h1>Список сотрудников:</h1>
 <#if teachers?has_content>
-    <h1>Список сотрудников:</h1>
     <#list teachers as teacher>
-        <h3>Имя: ${teacher.name}</h3> <br>
+        <h3>Фамилия: ${teacher.lastname}</h3>
+        <h3>Имя: ${teacher.firstname}</h3>
+        <br>
     </#list>
+<#else>
+    <#if teacher??>
+        <h3>Фамилия: ${teacher.lastname}</h3>
+        <h3>Имя: ${teacher.firstname}</h3>
+    <#else>
+        <h1>Пока нет данных. <a href="/admin/add/teacher">Добавить нового сотрудника?</a></h1>
+    </#if>
 </#if>
 
-<#if teacher??>
-    ${teacher.name}
-</#if>
+
 
 </body>
 </html>

@@ -16,5 +16,9 @@ public interface TeacherService {
     //достает учителя по id
     Teacher getTeacherById(Long teacherId);
 
+    //сохраняем
     void saveNewTeacher(AddTeacherForm form);
+
+    //удаляем
+    void removeTeacher(Long teacherId);
 }

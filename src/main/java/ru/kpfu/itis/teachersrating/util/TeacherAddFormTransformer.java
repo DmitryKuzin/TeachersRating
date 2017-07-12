@@ -10,7 +10,8 @@ public class TeacherAddFormTransformer {
             return null;
         }
         Teacher teacher = new Teacher();
-        teacher.setName(form.getName());
+        teacher.setFirstname(form.getFirstname());
+        teacher.setLastname(form.getLastname());
         return teacher;
     }
 

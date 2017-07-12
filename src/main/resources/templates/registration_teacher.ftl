@@ -8,10 +8,18 @@
 <body>
 
 <form action='/admin/add/teacher' method="post" id="add_form">
-    <label>ФИО:<br>
-    <@spring.bind "add_form.name"/>
+    <label>Фамилия:<br>
+    <@spring.bind "add_form.lastname"/>
         <input type="text"
-               name="name"/><br>
+               name="lastname"/><br>
+    <#list spring.status.errorMessages as error> <b>${error}</b> <br> </#list>
+        <br>
+    </label>
+
+    <label>Имя:<br>
+    <@spring.bind "add_form.firstname"/>
+        <input type="text"
+               name="firstname"/><br>
     <#list spring.status.errorMessages as error> <b>${error}</b> <br> </#list>
         <br>
     </label>
