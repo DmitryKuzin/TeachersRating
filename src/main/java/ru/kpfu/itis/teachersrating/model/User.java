@@ -36,6 +36,10 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @ManyToOne
+    @JoinColumn(name = "student_group_id")
+    private Group group;
+
     public User() {
     }
 
@@ -109,5 +113,13 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
     }
 }

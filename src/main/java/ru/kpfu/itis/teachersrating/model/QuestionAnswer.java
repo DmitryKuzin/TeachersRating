@@ -10,16 +10,20 @@ public class QuestionAnswer {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "question_id")
     private Question question;
 
-    @ManyToOne
-    @JoinColumn(name = "survey_response_id")
-    private SurveyResponse surveyResponse;
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    @Column(name = "answer")
-    private String answerValue;
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "teacher_id")
+    private Teacher teacher;
+
+    @Column(name = "answer_value")
+    private Integer answerValue;
 
     public QuestionAnswer() {
     }
@@ -40,19 +44,27 @@ public class QuestionAnswer {
         this.question = question;
     }
 
-    public String getAnswerValue() {
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
+    public Integer getAnswerValue() {
         return answerValue;
     }
 
-    public void setAnswerValue(String answerValue) {
+    public void setAnswerValue(Integer answerValue) {
         this.answerValue = answerValue;
-    }
-
-    public SurveyResponse getSurveyResponse() {
-        return surveyResponse;
-    }
-
-    public void setSurveyResponse(SurveyResponse surveyResponse) {
-        this.surveyResponse = surveyResponse;
     }
 }

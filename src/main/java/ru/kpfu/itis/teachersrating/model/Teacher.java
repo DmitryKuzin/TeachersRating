@@ -1,6 +1,8 @@
 package ru.kpfu.itis.teachersrating.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -18,11 +20,14 @@ public class Teacher {
     @Column
     private String description;
 
-    @ManyToMany(mappedBy = "teachers")
-    private Set<Institute> institutes;
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "student_group_teacher",
+            joinColumns = @JoinColumn(name = "teacher_id"),
+            inverseJoinColumns = @JoinColumn(name = "student_group_id"))
+    private Set<Group> groups = new HashSet<>();
 
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<TeacherAssessmentSurveyResponse> surveyResponses;
+    private List<QuestionAnswer> questionAnswers = new ArrayList<>();
 
     public Teacher() {
     }
@@ -51,19 +56,19 @@ public class Teacher {
         this.description = description;
     }
 
-    public Set<Institute> getInstitutes() {
-        return institutes;
+    public Set<Group> getGroups() {
+        return groups;
     }
 
-    public void setInstitutes(Set<Institute> institutes) {
-        this.institutes = institutes;
+    public void setGroups(Set<Group> groups) {
+        this.groups = groups;
     }
 
-    public List<TeacherAssessmentSurveyResponse> getSurveyResponses() {
-        return surveyResponses;
+    public List<QuestionAnswer> getQuestionAnswers() {
+        return questionAnswers;
     }
 
-    public void setSurveyResponses(List<TeacherAssessmentSurveyResponse> surveyResponses) {
-        this.surveyResponses = surveyResponses;
+    public void setQuestionAnswers(List<QuestionAnswer> questionAnswers) {
+        this.questionAnswers = questionAnswers;
     }
 }

@@ -1,6 +1,7 @@
 package ru.kpfu.itis.teachersrating.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -11,18 +12,14 @@ public class Institute {
     @GeneratedValue
     private Long id;
 
-    @Column
+    @Column(name = "name")
     private String name;
 
-    @Column
+    @Column(name = "description")
     private String description;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "institute_teacher",
-            joinColumns = @JoinColumn(name = "institute_id"),
-            inverseJoinColumns = @JoinColumn(name = "teacher_id"))
-    private Set<Teacher> teachers;
-
+    @OneToMany(mappedBy = "institute", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Group> groups = new HashSet<>();
 
     public Institute() {
     }
@@ -51,11 +48,11 @@ public class Institute {
         this.description = description;
     }
 
-    public Set<Teacher> getTeachers() {
-        return teachers;
+    public Set<Group> getGroups() {
+        return groups;
     }
 
-    public void setTeachers(Set<Teacher> teachers) {
-        this.teachers = teachers;
+    public void setGroups(Set<Group> groups) {
+        this.groups = groups;
     }
 }

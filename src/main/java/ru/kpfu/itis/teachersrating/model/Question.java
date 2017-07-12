@@ -1,9 +1,6 @@
 package ru.kpfu.itis.teachersrating.model;
 
-import org.hibernate.annotations.SortNatural;
-
 import javax.persistence.*;
-import java.util.SortedSet;
 
 @Entity
 @Table(name = "question")
@@ -19,14 +16,6 @@ public class Question implements Comparable<Question> {
 
     @Column(name = "order_num")
     private Integer order;
-
-    @ManyToOne
-    @JoinColumn(name = "survey_id")
-    private Survey survey;
-
-    @SortNatural
-    @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-    private SortedSet<QuestionOption> options;
 
     public Question() {
     }
@@ -53,22 +42,6 @@ public class Question implements Comparable<Question> {
 
     public void setOrder(Integer order) {
         this.order = order;
-    }
-
-    public Survey getSurvey() {
-        return survey;
-    }
-
-    public void setSurvey(Survey survey) {
-        this.survey = survey;
-    }
-
-    public SortedSet<QuestionOption> getOptions() {
-        return options;
-    }
-
-    public void setOptions(SortedSet<QuestionOption> options) {
-        this.options = options;
     }
 
     @Override
