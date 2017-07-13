@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<form action='/admin/add/teacher' method="post" id="form"  enctype="multipart/form-data">
+<form action='/admin/add/teacher' method="post" id="form" enctype="multipart/form-data">
     <label>Фамилия:<br>
     <@spring.bind "form.lastname"/>
         <input type="text"
@@ -20,6 +20,26 @@
     <@spring.bind "form.firstname"/>
         <input type="text"
                name="firstname"/><br>
+    <#list spring.status.errorMessages as error> <b>${error}</b> <br> </#list>
+        <br>
+    </label>
+
+    <label>Институт:<br>
+    <@spring.bind "form.institute"/>
+        <select name="institute" multiple>
+            <option disabled selected value="">Выберите институт</option>
+        <#list institutes as institute>
+            <option value="${institute.id}">${institute.name}</option>
+        </#list>
+        </select>
+    <#list spring.status.errorMessages as error> <b>${error}</b> <br> </#list>
+        <br>
+    </label>
+
+    <label>Должность:<br>
+    <@spring.bind "form.workplace"/>
+        <input type="text"
+               name="workplace"/><br>
     <#list spring.status.errorMessages as error> <b>${error}</b> <br> </#list>
         <br>
     </label>

@@ -5,9 +5,6 @@ import ru.kpfu.itis.teachersrating.model.Teacher;
 
 import java.util.List;
 
-/**
- * Created by Roman on 12.07.2017.
- */
 public interface TeacherService {
 
     //достает всех учителей

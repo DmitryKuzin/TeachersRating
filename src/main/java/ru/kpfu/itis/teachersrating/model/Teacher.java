@@ -24,11 +24,17 @@ public class Teacher {
     @Column(name = "image_path")
     private String imagePath;
 
-    @ManyToMany(mappedBy = "teachers")
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "institute_teacher",
+            joinColumns = @JoinColumn(name = "teacher_id"),
+            inverseJoinColumns = @JoinColumn(name = "institute_id"))
     private Set<Institute> institutes;
 
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TeacherAssessmentSurveyResponse> surveyResponses;
+
+    @Column(name = "workplace")
+    private String workplace;
 
     public Teacher() {
     }
@@ -87,5 +93,13 @@ public class Teacher {
 
     public void setSurveyResponses(List<TeacherAssessmentSurveyResponse> surveyResponses) {
         this.surveyResponses = surveyResponses;
+    }
+
+    public String getWorkplace() {
+        return workplace;
+    }
+
+    public void setWorkplace(String workplace) {
+        this.workplace = workplace;
     }
 }

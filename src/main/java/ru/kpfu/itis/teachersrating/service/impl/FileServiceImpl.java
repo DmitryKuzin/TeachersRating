@@ -18,7 +18,8 @@ public class FileServiceImpl implements FileService {
         if (!file.isEmpty()) {
             try {
                 byte[] bytes = file.getBytes();
-                File dir = new File("C:\\git/praktica/TeachersRating/src/main/resources/static/img");
+                //ToDo
+                File dir = new File("C:\\git/praktica/TeachersRating/target/classes/static/img");
                 if (!dir.exists()) {
                     dir.mkdirs();
                 }

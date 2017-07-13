@@ -14,6 +14,22 @@
         </#if>
         <h3>Фамилия: ${teacher.lastname}</h3>
         <h3>Имя: ${teacher.firstname}</h3>
+        <h3>Институт:
+            <#if teacher.institutes?has_content>
+                <#list teacher.institutes as institute>
+                    ${institute.name}
+                </#list>
+            <#else>
+                не указан
+            </#if>
+        </h3>
+        <h3>Должность:
+            <#if teacher.workplace??>
+            ${teacher.workplace}
+            <#else>
+                не указана
+            </#if>
+        </h3>
         <a href="/admin/edit/teacher/${teacher.id}">Редактировать</a>
         <a href="/admin/remove/teacher/${teacher.id}">Удалить</a>
     </div>
@@ -26,6 +42,22 @@
         </#if>
         <h3>Фамилия: ${teacher.lastname}</h3>
         <h3>Имя: ${teacher.firstname}</h3>
+        <h3>Институт:
+            <#if teacher.institutes?has_content>
+                <#list teacher.institutes as institute>
+                ${institute.name}
+                </#list>
+            <#else>
+                не указан
+            </#if>
+        </h3>
+        <h3>Должность:
+            <#if teacher.workplace??>
+                ${teacher.workplace}
+            <#else>
+                не указана
+            </#if>
+        </h3>
         <a href="/admin/edit/teacher/${teacher.id}">Редактировать</a>
         <a href="/admin/remove/teacher/${teacher.id}">Удалить</a>
     <div>

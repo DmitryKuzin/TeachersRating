@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.kpfu.itis.teachersrating.form.TeacherForm;
-import ru.kpfu.itis.teachersrating.service.FileService;
+import ru.kpfu.itis.teachersrating.service.InstituteService;
 import ru.kpfu.itis.teachersrating.service.TeacherService;
 
 import javax.validation.Valid;
@@ -15,7 +15,9 @@ import javax.validation.Valid;
 //@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class AdminController {
     @Autowired
-    TeacherService teacherService;
+    private TeacherService teacherService;
+    @Autowired
+    private InstituteService instituteService;
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String getAdminPage(){
@@ -25,6 +27,7 @@ public class AdminController {
     @RequestMapping(value = "/admin/add/teacher", method = RequestMethod.GET)
     public String addNewTeacher(Model model){
         model.addAttribute("form", new TeacherForm());
+        model.addAttribute("institutes", instituteService.getAll());
         return "registration_teacher";
     }
 
@@ -36,8 +39,9 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/edit/teacher/{teacherId}", method = RequestMethod.GET)
     public String editTeacher(@PathVariable Long teacherId, Model model){
-        model.addAttribute("add_form", new TeacherForm());
+        model.addAttribute("form", new TeacherForm());
         model.addAttribute("teacher", teacherService.getTeacherById(teacherId));
+        model.addAttribute("institutes", instituteService.getAll());
         return "edit_teacher";
     }
 

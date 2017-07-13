@@ -17,10 +17,7 @@ public class Institute {
     @Column
     private String description;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "institute_teacher",
-            joinColumns = @JoinColumn(name = "institute_id"),
-            inverseJoinColumns = @JoinColumn(name = "teacher_id"))
+    @ManyToMany(mappedBy = "institutes")
     private Set<Teacher> teachers;
 
 

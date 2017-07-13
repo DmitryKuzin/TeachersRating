@@ -13,14 +13,11 @@ import ru.kpfu.itis.teachersrating.service.TeacherService;
 
 import java.util.List;
 
-/**
- * Created by Roman on 12.07.2017.
- */
 @Controller
 public class TeacherController {
 
     @Autowired
-    TeacherService teacherService;
+    private TeacherService teacherService;
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public String notFoundException() {
