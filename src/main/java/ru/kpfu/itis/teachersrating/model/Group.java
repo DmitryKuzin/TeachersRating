@@ -25,7 +25,7 @@ public class Group {
     @Column(name = "end_date")
     private Date endDate;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "institute_id")
     private Institute institute;
 
