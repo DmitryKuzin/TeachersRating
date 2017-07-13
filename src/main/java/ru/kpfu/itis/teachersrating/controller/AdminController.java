@@ -8,9 +8,6 @@ import ru.kpfu.itis.teachersrating.form.TeacherForm;
 import ru.kpfu.itis.teachersrating.service.InstituteService;
 import ru.kpfu.itis.teachersrating.service.TeacherService;
 
-import javax.validation.Valid;
-
-
 @Controller
 //@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class AdminController {
@@ -32,7 +29,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/admin/add/teacher", method = RequestMethod.POST)
-    public String saveNewTeacher(@ModelAttribute("form") @Valid TeacherForm form){
+    public String saveNewTeacher(@ModelAttribute("form") TeacherForm form){
         teacherService.saveTeacherByForm(form);
         return "redirect:/teacher";
     }
@@ -46,7 +43,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/admin/edit/teacher/{teacherId}", method = RequestMethod.POST)
-    public String saveChanges(@PathVariable Long teacherId, @ModelAttribute("form") @Valid TeacherForm form){
+    public String saveChanges(@PathVariable Long teacherId, @ModelAttribute("form") TeacherForm form){
         teacherService.saveChanges(teacherId, form);
         return "redirect:/teacher";
     }
