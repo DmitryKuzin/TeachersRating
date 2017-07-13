@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import ru.kpfu.itis.teachersrating.model.Institute;
 
 @Repository
-public interface InstituteRepository extends JpaRepository<Institute, Long>{
+public interface InstituteRepository extends JpaRepository<Institute, Long> {
 }

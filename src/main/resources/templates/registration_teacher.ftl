@@ -24,6 +24,14 @@
         <br>
     </label>
 
+    <label>Отчество:<br>
+    <@spring.bind "form.patronymic"/>
+        <input type="text"
+               name="patronymic"/><br>
+    <#list spring.status.errorMessages as error> <b>${error}</b> <br> </#list>
+        <br>
+    </label>
+
     <label>Институт:<br>
     <@spring.bind "form.institute"/>
         <select name="institute" multiple>

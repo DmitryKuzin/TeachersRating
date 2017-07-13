@@ -8,7 +8,7 @@
     <title>Страница Администратора</title>
 </head>
 <body>
-    <h1>1. <a href="/admin/add/teacher">Добавить сотрудника</a></h1>
-    <h1>2. <a href="/teacher">Просмотреть список сотрудников</a></h1>
+<h1>1. <a href="/admin/add/teacher">Добавить сотрудника</a></h1>
+<h1>2. <a href="/teacher">Просмотреть список сотрудников</a></h1>
 </body>
 </html>

@@ -18,6 +18,9 @@ public class Teacher {
     @Column(name = "last_name", nullable = false)
     private String lastname;
 
+    @Column(name = "patronymic")
+    private String patronymic;
+
     @Column
     private String description;
 
@@ -61,6 +64,14 @@ public class Teacher {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public String getPatronymic() {
+        return patronymic;
+    }
+
+    public void setPatronymic(String patronymic) {
+        this.patronymic = patronymic;
     }
 
     public String getDescription() {

@@ -1,4 +1,4 @@
-package ru.kpfu.itis.teachersrating;
+package ru.kpfu.itis.teachersrating.config;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

@@ -15,6 +15,10 @@ public class TeacherForm {
     @Size(min = 2, max = 30, message = "Максимальная длина 30 символов")
     private String lastname;
 
+    @NotEmpty(message = "Поле не может быть пустым")
+    @Size(min = 2, max = 30, message = "Максимальная длина 30 символов")
+    private String patronymic;
+
     private List<Long> institute;
 
     private MultipartFile file;
@@ -37,6 +41,14 @@ public class TeacherForm {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public String getPatronymic() {
+        return patronymic;
+    }
+
+    public void setPatronymic(String patronymic) {
+        this.patronymic = patronymic;
     }
 
     public List<Long> getInstitute() {

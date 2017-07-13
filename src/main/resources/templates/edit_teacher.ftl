@@ -40,6 +40,22 @@
         <br>
     </label>
 
+    <label>Отчество:<br>
+    <@spring.bind "form.patronymic"/>
+    <#if teacher??>
+        <#if teacher.patronymic??>
+            <input type="text" name="patronymic" value="${teacher.patronymic}"/>
+        <#else>
+            <input type="text" name="patronymic"/>
+        </#if>
+    <#else>
+        <input type="text" name="patronymic"/>
+    </#if>
+        <br>
+    <#list spring.status.errorMessages as error> <b>${error}</b> <br> </#list>
+        <br>
+    </label>
+
     <label>Институт:<br>
     <@spring.bind "form.institute"/>
         <select name="institute" multiple>

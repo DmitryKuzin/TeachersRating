@@ -25,16 +25,16 @@ public class TeacherController {
     }
 
     @RequestMapping(value = "/teacher", method = RequestMethod.GET)
-    public String getAllTeachers(Model model){
+    public String getAllTeachers(Model model) {
         List<Teacher> teachers = teacherService.getAllTeachers();
         model.addAttribute("teachers", teachers);
         return "teachers";
     }
 
     @RequestMapping(value = "/teacher/{teacherId}", method = RequestMethod.GET)
-    public String getTeacherById(@PathVariable Long teacherId, Model model){
+    public String getTeacherById(@PathVariable Long teacherId, Model model) {
         Teacher teacher = teacherService.getTeacherById(teacherId);
-        if (teacher == null){
+        if (teacher == null) {
             throw new ResourceNotFoundException();
         }
         model.addAttribute("teacher", teacher);

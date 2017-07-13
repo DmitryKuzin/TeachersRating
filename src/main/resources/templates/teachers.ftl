@@ -7,17 +7,30 @@
 <body>
 <h1>Список сотрудников:</h1>
 <#if teachers?has_content>
-<#list teachers as teacher>
+    <#list teachers as teacher>
     <div>
         <#if teacher.imagePath??>
             <img src="${teacher.imagePath}" style="height: 200px"/>
         </#if>
-        <h3>Фамилия: ${teacher.lastname}</h3>
-        <h3>Имя: ${teacher.firstname}</h3>
+        <h3>Фамилия:
+            <#if teacher.lastname??>
+            ${teacher.lastname}
+            </#if>
+        </h3>
+        <h3>Имя:
+            <#if teacher.firstname??>
+            ${teacher.firstname}
+            </#if>
+        </h3>
+        <h3>Отчество:
+            <#if teacher.patronymic??>
+            ${teacher.patronymic}
+            </#if>
+        </h3>
         <h3>Институт:
             <#if teacher.institutes?has_content>
                 <#list teacher.institutes as institute>
-                    ${institute.name}
+                ${institute.name}
                 </#list>
             <#else>
                 не указан
@@ -33,7 +46,7 @@
         <a href="/admin/edit/teacher/${teacher.id}">Редактировать</a>
         <a href="/admin/remove/teacher/${teacher.id}">Удалить</a>
     </div>
-</#list>
+    </#list>
 <#else>
     <#if teacher??>
     <div>
@@ -42,6 +55,7 @@
         </#if>
         <h3>Фамилия: ${teacher.lastname}</h3>
         <h3>Имя: ${teacher.firstname}</h3>
+        <h3>Имя: ${teacher.patronymic}</h3>
         <h3>Институт:
             <#if teacher.institutes?has_content>
                 <#list teacher.institutes as institute>
@@ -53,7 +67,7 @@
         </h3>
         <h3>Должность:
             <#if teacher.workplace??>
-                ${teacher.workplace}
+            ${teacher.workplace}
             <#else>
                 не указана
             </#if>

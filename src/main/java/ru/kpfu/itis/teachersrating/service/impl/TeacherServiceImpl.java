@@ -31,7 +31,7 @@ public class TeacherServiceImpl implements TeacherService {
         List<Teacher> teachers = teacherRepository.findAll();
         teachers = teachers.stream()
                 .sorted(Comparator.comparing(Teacher::getLastname)
-                                .thenComparing(Comparator.comparing(Teacher::getFirstname)))
+                        .thenComparing(Comparator.comparing(Teacher::getFirstname)))
                 .collect(Collectors.toList());
         return teachers;
     }
@@ -56,9 +56,10 @@ public class TeacherServiceImpl implements TeacherService {
         setParams(teacher, form);
     }
 
-    private void setParams(Teacher teacher, TeacherForm form){
+    private void setParams(Teacher teacher, TeacherForm form) {
         teacher.setFirstname(form.getFirstname());
         teacher.setLastname(form.getLastname());
+        teacher.setPatronymic(form.getPatronymic());
 
         if (form.getInstitute() != null && !form.getInstitute().isEmpty()) {
             Set<Institute> instituteSet = form.getInstitute().stream().distinct()
